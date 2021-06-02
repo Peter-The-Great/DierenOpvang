@@ -18,7 +18,7 @@ $id = $_SESSION['id'];
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<?php require("style.php"); ?>
+	<?php require("components/style.php"); ?>
 	<title><?php echo $open; ?> - Dashboard</title>
 	<script src="https://cdn.tiny.cloud/1/swq7hpikkqwjjze9ad6mykwgy37w7e1mlvbbslqdqokoedyw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
@@ -35,7 +35,7 @@ $id = $_SESSION['id'];
     </script>
 </head>
 <body>
-<?php require("navbar.php"); ?>
+<?php require("components/navbar.php"); ?>
 <!-- Hieroner hebben we de tabel gemaakt die alles laat zien --> 
 <div class="container">
 	<a href="createpost.php" class="btn btn-primary mt-5"><i class="fas fa-user-plus"></i> Lesstof Aanmaken</a>
@@ -130,6 +130,6 @@ $id = $_SESSION['id'];
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<?php require("scripts.php"); ?>
+<?php require("components/scripts.php"); ?>
 </body>
 </html>

@@ -16,7 +16,7 @@ $result2 = $conn->query($sql2);
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<?php require("style.php"); ?>
+	<?php require("components/style.php"); ?>
 	<title><?php echo $open; ?> - Dashboard</title>
 	<script src="https://cdn.tiny.cloud/1/swq7hpikkqwjjze9ad6mykwgy37w7e1mlvbbslqdqokoedyw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
@@ -33,7 +33,7 @@ $result2 = $conn->query($sql2);
     </script>
 </head>
 <body>
-<?php require("navbar.php"); ?>
+<?php require("components/navbar.php"); ?>
 <!-- Hieroner hebben we de tabel gemaakt die alles laat zien --> 
 <div class="container">
 	<a href="createpost.php" class="btn btn-primary mt-5"><i class="fas fa-user-plus"></i> Lesstof Aanmaken</a>
@@ -127,7 +127,7 @@ $result2 = $conn->query($sql2);
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<?php require("scripts.php"); ?>
+<?php require("components/scripts.php"); ?>
 <script type="text/javascript" src="search.js"></script>
 </body>
 </html>

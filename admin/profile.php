@@ -20,7 +20,7 @@ if($stmt = $conn->prepare("SELECT `username`, `email`, `realname`, `profile` FRO
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <?php require("style.php"); ?>
+    <?php require("components/style.php"); ?>
     <style>
     	#showitbtn{
     float: right;
@@ -30,7 +30,7 @@ if($stmt = $conn->prepare("SELECT `username`, `email`, `realname`, `profile` FRO
     <title><?php echo $open; ?> - Profiel</title>
 </head>
 <body>
-<?php require("navbar.php"); ?>
+<?php require("components/navbar.php"); ?>
 <div class="container mt-2">
         <form method="POST" enctype="multipart/form-data" action="../php/changeprofile.php">
         <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
@@ -73,7 +73,7 @@ if($stmt = $conn->prepare("SELECT `username`, `email`, `realname`, `profile` FRO
                 ?>
         </form>
     </div>
-<?php require("scripts.php"); ?>
+<?php require("components/scripts.php"); ?>
 <script src="toggle.js"></script>
 </body>
 </html>

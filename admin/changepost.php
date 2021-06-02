@@ -39,7 +39,7 @@ if($stmt2 = $conn->prepare("SELECT name FROM cat WHERE id = ?")) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <?php require("style.php"); ?>
+    <?php require("components/style.php"); ?>
     <!-- Script Tiny MCE -->
     <script src="https://cdn.tiny.cloud/1/swq7hpikkqwjjze9ad6mykwgy37w7e1mlvbbslqdqokoedyw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
@@ -127,7 +127,7 @@ if($stmt2 = $conn->prepare("SELECT name FROM cat WHERE id = ?")) {
 </head>
 
 <body>
-<?php require("navbar.php"); ?>
+<?php require("components/navbar.php"); ?>
     <div class="container mt-2">
         <form method="POST" enctype="multipart/form-data" action="../php/changepost.php?id=<?php echo $_GET['id']; ?>">
             <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
@@ -197,6 +197,6 @@ if($stmt2 = $conn->prepare("SELECT name FROM cat WHERE id = ?")) {
     </div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <?php require("scripts.php"); ?>
+    <?php require("components/scripts.php"); ?>
 </body>
 </html>

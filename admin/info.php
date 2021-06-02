@@ -25,7 +25,7 @@ if($stmt = $conn->prepare("SELECT text FROM info WHERE id = 1")) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <?php require("style.php"); ?>
+    <?php require("components/style.php"); ?>
     <!-- Script Tiny CME -->
     <script src="https://cdn.tiny.cloud/1/swq7hpikkqwjjze9ad6mykwgy37w7e1mlvbbslqdqokoedyw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     
@@ -34,7 +34,7 @@ if($stmt = $conn->prepare("SELECT text FROM info WHERE id = 1")) {
 </head>
 
 <body>
-<?php require("navbar.php"); ?>
+<?php require("components/navbar.php"); ?>
     <div class="container mt-2">
         <form method="POST" action="../php/changebiografie.php">
             <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
@@ -57,7 +57,7 @@ if($stmt = $conn->prepare("SELECT text FROM info WHERE id = 1")) {
     </div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <?php require("scripts.php"); ?>
+    <?php require("components/scripts.php"); ?>
     <script>
         tinymce.init({
             selector: '#text',

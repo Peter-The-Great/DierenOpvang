@@ -17,6 +17,7 @@ session_start();
 <body>
 <?php
 require("components/scripts.php");
+require("components/footer.php");
 ?>
 </body>
 </html>

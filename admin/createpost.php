@@ -16,7 +16,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <?php require("style.php"); ?>
+    <?php require("components/style.php"); ?>
     <!-- Script Tiny CME -->
     <script src="https://cdn.tiny.cloud/1/swq7hpikkqwjjze9ad6mykwgy37w7e1mlvbbslqdqokoedyw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
@@ -101,7 +101,7 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-<?php require("navbar.php"); ?>
+<?php require("components/navbar.php"); ?>
 <!-- Hier hebben we het formulier gemaakt voor het toevoegen van een post -->
 <!-- Bij addpost staat de query voor het toevoegen dat we bij action hebben gezet. -->
     <div class="container mt-2">
@@ -170,6 +170,6 @@ $result = $conn->query($sql);
     </div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <?php require("scripts.php"); ?>
+    <?php require("components/scripts.php"); ?>
 </body>
 </html>

@@ -14,7 +14,7 @@ $_SESSION['token'] =  $token;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <?php require("style.php"); ?>
+    <?php require("components/style.php"); ?>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/login.css">
     <title>Login - <?php echo $open ?></title>
@@ -63,7 +63,7 @@ $_SESSION['token'] =  $token;
         </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <?php require("scripts.php"); ?>
+    <?php require("components/scripts.php"); ?>
     <script src="toggle.js"></script>
 </body>
 
