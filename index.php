@@ -15,6 +15,17 @@ session_start();
     <title>Dieren Opvang</title>
 </head>
 <body>
+<header>
+	<div class="container">
+    <img class="img-fluid" width="120" src="uploads/simg/logo.png">
+	    <h1 style="margin-top: -4rem;" class="text-center ms-4">Dierenopvang</h1>
+		<p></p>
+	</div>
+</header>
+<?php
+require("components/navbar.php");
+?>
+
 <?php
 require("components/scripts.php");
 require("components/footer.php");

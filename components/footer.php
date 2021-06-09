@@ -1,6 +1,6 @@
 <footer class="footer mt-auto">
 	<div class="container">
-		<span class="text-muted"><mm id="copy"></mm><?php echo $open;?></span>
+		<span class="text-white text-center"><mm id="copy"></mm>Dieren Opvang</span>
 	</div>
 </footer>
 <script src="js/info.js"></script>
