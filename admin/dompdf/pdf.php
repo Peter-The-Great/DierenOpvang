@@ -50,6 +50,6 @@ $pdf->setPaper('A4', 'landscape');
 //render the HTML as PDF
 $pdf->render();
 
-$pdf->stream('result', Array('Attachment'=>0));
+$pdf->stream('result', Array('Attachment'=>1));
 
 ?>

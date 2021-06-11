@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2021 at 01:57 PM
+-- Generation Time: Jun 11, 2021 at 01:59 PM
 -- Server version: 10.1.48-MariaDB-0ubuntu0.18.04.1
 -- PHP Version: 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -33,16 +32,15 @@ CREATE TABLE `admin` (
   `username` varchar(60) NOT NULL,
   `password` varchar(64) NOT NULL,
   `email` varchar(60) NOT NULL,
-  `realname` varchar(60) NOT NULL,
-  `profile` text NOT NULL
+  `realname` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`ID`, `username`, `password`, `email`, `realname`, `profile`) VALUES
-('52086616-c85c-4363-98f0-4dcd698ec356', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Mathijs54@Gmail.com', 'Mathijs Clasener', 'uploads/6080359930cf5_6080359930cfc.png');
+INSERT INTO `admin` (`ID`, `username`, `password`, `email`, `realname`) VALUES
+('52086616-c85c-4363-98f0-4dcd698ec356', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Mathijs54@Gmail.com', 'Mathijs Clasener');
 
 -- --------------------------------------------------------
 
@@ -60,7 +58,8 @@ CREATE TABLE `dieren` (
   `regristratiedatum` datetime NOT NULL,
   `naar` varchar(64) NOT NULL,
   `kenmerken` text NOT NULL,
-  `vaccinatie` text NOT NULL
+  `vaccinatie` text NOT NULL,
+  `prijs` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -74,7 +73,9 @@ CREATE TABLE `mensen` (
   `naam` varchar(64) NOT NULL,
   `email` varchar(64) NOT NULL,
   `leeftijd` int(3) NOT NULL,
-  `huisdierid` varchar(64) NOT NULL
+  `huisdierid` varchar(64) NOT NULL,
+  `bankrekenning` varchar(30) NOT NULL,
+  `Bank` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
