@@ -2,7 +2,7 @@
 		<div class="container">
 			<ul class="nav mx-auto">
 				<li class="nav-item active">
-					<a class="nav-link text-secondary" href="/">Home</a>
+					<a class="nav-link text-secondary" href="/DierenOpvang">Home</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link text-secondary" href="registratie.php">Registratie</a>

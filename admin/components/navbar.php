@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-fixed-top navbar-light bg-success main-nav">
 	<div class="container-fluid">
-	<a class="navbar-brand text-white" href="/DierenOpvang/"><img class="img-fluid rounded-circle" width="75" height="auto" src="../<?php echo $profilepic; ?>"> Learning Software</a>
+	<a class="navbar-brand text-white" href="/DierenOpvang/"><img class="img-fluid rounded-circle" width="75" height="auto" src="../uploads/simg/logo.png"> Dieren Opvang</a>
 	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
 	</button>

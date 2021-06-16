@@ -10,19 +10,24 @@ if(!isset($_SESSION["token"]) || $_SESSION["token"] !== $_POST["token"]){
         header("Location: ../admin/createpost.php?error=token");
 }
 // Insert into DATABASE
-if(isset($_POST["title"], $_POST["text"], $_POST["subtext"], $_POST['leer'], $_FILES['image'], $_POST['uit'], $_POST['video'])){
+if(isset($_POST["naam"], $_POST["leeftijd"], $_POST["jaar"], $_POST["kenmerken"], $_POST['vaccinatie'], $_FILES['image'], $_POST['eigenaar'],$_POST['email'], $_POST['dier'])){
+$naam = strip_tags(htmlspecialchars($_POST['naam']));
+$leeftijd = strip_tags(htmlspecialchars($_POST['leeftijd']));
+$kenmerken = strip_tags(htmlspecialchars($_POST['kenmerken']));
+$eigenaar = strip_tags(htmlspecialchars($_POST['eigenaar']));
+$email = strip_tags(htmlspecialchars($_POST['email']));
+$dier = strip_tags(htmlspecialchars($_POST['dier']));
+$jaar = strip_tags(htmlspecialchars($_POST['jaar']));
+$dateformat = 'Y-m-d';
+$datum = date($dateformat, strtotime($jaar));
+
 $image = $_FILES['image'];
 $Tijdelijk = $image['tmp_name'];
 $imagenaam = $image['name'];
 $type = $image['type'];
 $map = 'uploads/';
 $Toegestaan = array("image/jpg","image/jpeg","image/png","image/gif");
-$titel = strip_tags(htmlspecialchars($_POST['title']));
 
-//Get the video string
-$videostring = str_replace('https://www.youtube.com/watch?v=', '', $_POST['video']);
-$videostring1 = explode('&', $videostring);
-$vidstring = $videostring1[0];
 
 
 //function to give a a unique id
@@ -46,8 +51,9 @@ if (in_array($type,$Toegestaan)){
     header("Location: createpost.php?error=nietgeupload");
 }
 $randomid = uuidv4();
-    if ($stmt = $conn->prepare("INSERT INTO subject (id, titel, subtext, text, image, video, leerlijn, uitgelicht) values (?, ?, ?, ?, ?, ?, ?, ?)")) {
-        $stmt->bind_param("ssssssss", $randomid, $titel, $_POST['subtext'], $_POST['text'], $new_str, $vidstring, $_POST['leer'], $_POST['uit']);
+$eigennaarid = uuidv4();
+    if ($stmt = $conn->prepare("INSERT INTO dieren (id, naam, soort, leeftijd, eigenaar_id, geboortedatum, image, naar, kenmerken, vaccinatie) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+        $stmt->bind_param("ssssssssss", $randomid, $naam, $dier, $leeftijd, $eigennaarid, $datum $new_str, "DierenOpvang", $kenmerken, $_POST['vaccinatie']);
         $stmt->execute();
         header("Location: ../admin/dashboard.php");
     } 
