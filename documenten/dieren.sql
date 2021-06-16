@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 28 mei 2021 om 16:53
--- Serverversie: 10.1.48-MariaDB-0ubuntu0.18.04.1
--- PHP-versie: 7.3.28
+-- Gegenereerd op: 16 jun 2021 om 21:01
+-- Serverversie: 10.4.14-MariaDB
+-- PHP-versie: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `testserver`
+-- Database: `dieren`
 --
 
 -- --------------------------------------------------------
@@ -55,12 +54,13 @@ CREATE TABLE `dieren` (
   `naam` varchar(64) NOT NULL,
   `soort` varchar(64) NOT NULL,
   `leeftijd` int(3) NOT NULL,
-  `eigenaar_naam` varchar(64) NOT NULL,
+  `eigenaar_id` varchar(64) NOT NULL,
   `geboortedatum` datetime NOT NULL,
   `regristratiedatum` datetime NOT NULL,
   `naar` varchar(64) NOT NULL,
   `kenmerken` text NOT NULL,
-  `vaccinatie` text NOT NULL
+  `vaccinatie` text NOT NULL,
+  `image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -76,6 +76,25 @@ CREATE TABLE `mensen` (
   `huisdierid` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `soort`
+--
+
+CREATE TABLE `soort` (
+  `id` varchar(64) NOT NULL,
+  `soort` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `soort`
+--
+
+INSERT INTO `soort` (`id`, `soort`) VALUES
+('02b95889-5448-47e4-8ee1-bff1d5574483', 'Hond'),
+('357705d4-88fd-457b-9cfb-e39d6762bed5', 'Kat/Poes');
+
 --
 -- Indexen voor geëxporteerde tabellen
 --
@@ -90,13 +109,30 @@ ALTER TABLE `admin`
 -- Indexen voor tabel `dieren`
 --
 ALTER TABLE `dieren`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `eigenaar_id` (`eigenaar_id`);
 
 --
 -- Indexen voor tabel `mensen`
 --
 ALTER TABLE `mensen`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexen voor tabel `soort`
+--
+ALTER TABLE `soort`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Beperkingen voor geëxporteerde tabellen
+--
+
+--
+-- Beperkingen voor tabel `dieren`
+--
+ALTER TABLE `dieren`
+  ADD CONSTRAINT `dieren_ibfk_1` FOREIGN KEY (`eigenaar_id`) REFERENCES `mensen` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
