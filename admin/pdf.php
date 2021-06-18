@@ -1,6 +1,6 @@
 <?php
 //include autoloader
-require_once 'autoload.inc.php';
+require_once 'dompdf/autoload.inc.php';
 
 //instantiate and use the class
 use Dompdf\Dompdf;
@@ -14,7 +14,7 @@ ob_start();
     ?>
     <h2>Basic HTML Table</h2>
 
-<table border='1' style="width:100%">
+<table style="width:100%">
   <tr>
     <th>Firstname</th>
     <th>Lastname</th> 

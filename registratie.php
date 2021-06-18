@@ -34,7 +34,7 @@ require("components/navbar.php");
             <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
             <div class="form-group">
                 <label for="naam">Naam</label>
-                <input name="naam" id="naam" class="form-control" placeholder="naam" type="text" required>
+                <input name="naam" id="naam" class="form-control" placeholder="Naam" type="text" required>
             </div>
             <div class="form-group">
                 <label for="naam">Leeftijd</label>
@@ -50,11 +50,11 @@ require("components/navbar.php");
             </div>
             <div class="form-group">
                 <label for="vaccinatie">Vaccinatie</label>
-                <textarea name="vaccinatie" id="subtext"></textarea required>
+                <textarea class="form-control" name="vaccinatie" id="subtext"></textarea required>
             </div>
             <div class="form-group">
                 <label for="eigenaar">Eigenaar</label>
-                <textarea name="eigenaar" id="subtext"></textarea required>
+                <textarea class="form-control" name="eigenaar" id="subtext"></textarea required>
             </div>
             <div class="form-group">
                 <label for="email">Eigenaar-email</label>
@@ -62,11 +62,11 @@ require("components/navbar.php");
             </div>
             <div class="form-group">
                 <label for="foto">Achtergrond Foto</label>
-                <input name="image" type="file">
+                <input class="form-control" name="image" type="file">
             </div>
-            <div class="form-group">
+            <div class="form-group mb-2">
                 <label for="dier">Type dier</label>
-                <select required name="dier">
+                <select class="form-select" required name="dier">
                 <option selected disabled>-- selecteer dier --</option>
                 <?php
                 //Hier loopen we door alle leerlijnen die dan vervolgens worden laten zien

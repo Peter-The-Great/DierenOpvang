@@ -1,14 +1,12 @@
 <?php
 session_start();
 require('database.php');
-if (!isset($_SESSION["loggedin"])) {
-	header("Location: ../index.php");
-	exit();
-}
+
 if(!isset($_SESSION["token"]) || $_SESSION["token"] !== $_POST["token"]){
         echo "Wrong Token";
-        header("Location: ../admin/createpost.php?error=token");
+        header("Location: ../registratie.php?error=token");
 }
+global $conn;
 // Insert into DATABASE
 if(isset($_POST["naam"], $_POST["leeftijd"], $_POST["jaar"], $_POST["kenmerken"], $_POST['vaccinatie'], $_FILES['image'], $_POST['eigenaar'],$_POST['email'], $_POST['dier'])){
 $naam = strip_tags(htmlspecialchars($_POST['naam']));
@@ -18,6 +16,7 @@ $eigenaar = strip_tags(htmlspecialchars($_POST['eigenaar']));
 $email = strip_tags(htmlspecialchars($_POST['email']));
 $dier = strip_tags(htmlspecialchars($_POST['dier']));
 $jaar = strip_tags(htmlspecialchars($_POST['jaar']));
+$vacinne = strip_tags(htmlspecialchars($_POST['vaccinatie']));
 $dateformat = 'Y-m-d';
 $datum = date($dateformat, strtotime($jaar));
 
@@ -50,16 +49,18 @@ if (in_array($type,$Toegestaan)){
 }else{
     header("Location: createpost.php?error=nietgeupload");
 }
+$nugaatnaar = "DierenOpvang";
 $randomid = uuidv4();
 $eigennaarid = uuidv4();
-    if ($stmt = $conn->prepare("INSERT INTO dieren (id, naam, soort, leeftijd, eigenaar_id, geboortedatum, image, naar, kenmerken, vaccinatie) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
-        $stmt->bind_param("ssssssssss", $randomid, $naam, $dier, $leeftijd, $eigennaarid, $datum $new_str, "DierenOpvang", $kenmerken, $_POST['vaccinatie']);
+    if ($stmt = $conn->prepare("INSERT INTO `dieren`(`id`, `naam`, `soort`, `leeftijd`, `eigenaar_id`, `geboortedatum`, `naar`, `kenmerken`, `vaccinatie`, `image`) VALUES (?,?,?,?,?,?,?,?,?,?)")) {
+        $stmt->bind_param("ssssssssss", $randomid, $naam, $dier, $leeftijd, $eigennaarid, $datum, $nugaatnaar, $kenmerken, $vacinne, $new_str);
         $stmt->execute();
-        header("Location: ../admin/dashboard.php");
-    } 
+        header("Location: ../index.php");
+    }
     else {
-        header('Location: ../admin/createpost.php?error=mysql');
+        header('Location: ../registratie.php?error=mysql');
     } 
 } else {
-    header('Location: ../admin/createpost.php?error=fields');
+    header('Location: ../registratie.php?error=fields');
 }
+?>
