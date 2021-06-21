@@ -14,7 +14,7 @@ session_start();
     ?>
     <title>Dieren Opvang</title>
 </head>
-<body>
+<body class="h-100">
 <header>
 	<div class="container">
     <img class="img-fluid" width="120" src="uploads/simg/logo.png">
