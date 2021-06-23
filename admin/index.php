@@ -17,15 +17,15 @@ $_SESSION['token'] =  $token;
     <?php require("components/style.php"); ?>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/login.css">
-    <title>Login - <?php echo $open ?></title>
+    <title>Login</title>
 </head>
 
 <body>
         <div class="login-box mx-auto shadow p-3 mb-5 bg-white rounded">
             <!-- Shadow, Center in the middle of screen -->
             <!-- Logo-->
-            <center><img class="img-fluid rounded-circle" src="../<?php echo $profilepic ?>"></center>
-            <h5 id="Inloggen"></h5><h4 class="card-title mb-4 mt-1"><?php echo $open; ?></h4>
+            <center><img class="img-fluid rounded" src="../uploads/simg/logo.png"></center>
+            <h5 id="Inloggen"></h5><h4 class="card-title mb-4 mt-1"></h4>
             <!-- Forum Itself -->
             <form method="POST" action="../php/login/authenticate.php">
                 <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
@@ -40,7 +40,7 @@ $_SESSION['token'] =  $token;
                     </button>
                 </div>
                 <div class="form-group">
-                <div class="g-recaptcha brochure__form__captcha" data-sitekey="6Le3GeIZAAAAAGUCdhhsn-8ML2jU7CPQKWceHLwc"></div><br>
+                <div class='g-recaptcha brochure__form__captcha' data-sitekey='6Le3GeIZAAAAAGUCdhhsn-8ML2jU7CPQKWceHLwc'></div><br>
                 </div>
                 <div class="form-group">
                     <button id="submit" type="submit" class="btn btn-dark btn-block" name="Inloggen">Inloggen</button>
