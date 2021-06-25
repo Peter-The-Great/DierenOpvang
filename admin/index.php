@@ -27,7 +27,7 @@ $_SESSION['token'] =  $token;
             <center><img class="img-fluid rounded" src="../uploads/simg/logo.png"></center>
             <h5 id="Inloggen"></h5><h4 class="card-title mb-4 mt-1"></h4>
             <!-- Forum Itself -->
-            <form method="POST" action="../php/login/authenticate.php">
+            <form method="POST" action="../php/login/authenticatie.php">
                 <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
                 <div class="form-group">
                     <label>Gebruikersnaam</label>

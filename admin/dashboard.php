@@ -5,9 +5,9 @@ if (!isset($_SESSION["loggedin"])) {
 	header("Location: ../index.php");
 	exit();
 }
-$sql = "SELECT id,titel,date FROM subject ORDER BY date DESC;";
+$sql = "SELECT `id`, `naam`, `soort`, `leeftijd`, `eigenaar_id`, `geboortedatum`, `regristratiedatum`, `naar`, `kenmerken`, `vaccinatie`, `image` FROM `dieren`;";
 $result = $conn->query($sql);
-$sql2 = "SELECT id,name FROM cat;";
+$sql2 = "SELECT id,soort FROM soort;";
 $result2 = $conn->query($sql2);
 $username = $_SESSION['name'];
 $id = $_SESSION['id'];
@@ -38,14 +38,19 @@ $id = $_SESSION['id'];
 <?php require("components/navbar.php"); ?>
 <!-- Hieroner hebben we de tabel gemaakt die alles laat zien --> 
 <div class="container">
-	<a href="createpost.php" class="btn btn-primary mt-5"><i class="fas fa-user-plus"></i> Lesstof Aanmaken</a>
-	<button class="btn btn-secondary mt-5" data-bs-toggle="modal" data-bs-target="#leerlijnenmodal"><i class="fas fa-user-plus"></i> Leerlijnen</button>
+	<a href="createpost.php" class="btn btn-primary mt-5"><i class="fas fa-user-plus"></i> Dier Aanmaken</a>
+	<button class="btn btn-secondary mt-5" data-bs-toggle="modal" data-bs-target="#leerlijnenmodal"><i class="fas fa-user-plus"></i> Dieren</button>
 	<div class="center-div">
 		<table class="table mt-2">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">Titel</th>
-					<th scope="col">Datum</th>
+					<th scope="col">Naam</th>
+					<th scope="col">Registratiedatum</th>
+					<th scope="col">Soort</th>
+					<th scope="col">Leeftijd</th>
+					<th scope="col">Geboortedatum</th>
+					<th scope="col">Kenmerken</th>
+					<th scope="col">Vaccinatie</th>
 					<th scope="col">Bekijken</th>
 					<th scope="col">Aanpassen</th>
 					<th scope="col">Verwijderen</th>
@@ -55,7 +60,9 @@ $id = $_SESSION['id'];
 
 				<?php
 				foreach ($result as $item) {
-					echo "<td>" . $item["titel"] . "</td><td>" .  $item["date"] . "</td></td><td><a href='../video.php?id=" . $item['id'] . "' class='btn btn-info btn-lg'><i class='fas fa-eye'></i></a></td><td><a href='changepost.php?id=" . $item['id'] . "' class='btn btn-warning btn-lg'><i class='fas fa-user-edit'></i></a></td><td><button type='button' data-bs-toggle='modal' data-bs-target='#post". $item['id'] ."' class='btn btn-danger btn-lg'><i class='fas fa-trash-alt'></i></button></td><tr>
+					echo "<td>" . $item["naam"] . "</td><td>" .  $item["regristratiedatum"] . "</td>
+					<td>" .  $item["soort"] . "</td><td>" .  $item["leeftijd"] . "</td><td>" .  $item["geboortedatum"] . "</td>
+					<td>" .  $item["kenmerken"] . "</td><td>" .  $item["vaccinatie"] . "</td><td><a href='../reservering.php?id=" . $item['id'] . "' class='btn btn-info btn-lg'><i class='fas fa-eye'></i></a></td><td><a href='changepost.php?id=" . $item['id'] . "' class='btn btn-warning btn-lg'><i class='fas fa-user-edit'></i></a></td><td><button type='button' data-bs-toggle='modal' data-bs-target='#post". $item['id'] ."' class='btn btn-danger btn-lg'><i class='fas fa-trash-alt'></i></button></td><tr>
 					<div class='modal fade' id='post". $item['id'] ."' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='postlabel". $item['id'] ."' aria-hidden='true'>
                         <div class='modal-dialog'>
                           <div class='modal-content'>

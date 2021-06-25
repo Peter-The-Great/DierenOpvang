@@ -12,7 +12,7 @@ session_start();
     <?php
     require("components/style.php");
     ?>
-    <title>Dieren Opvang Registratie</title>
+    <title>Dieren Opvang Reservering</title>
 </head>
 <body>
 <header>
@@ -25,6 +25,7 @@ session_start();
 <?php
     require("components/navbar.php");
 ?>
+
 <?php
 require("components/scripts.php");
 require("components/footer.php");

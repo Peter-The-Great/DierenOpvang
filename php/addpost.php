@@ -27,8 +27,16 @@ $type = $image['type'];
 $map = 'uploads/';
 $Toegestaan = array("image/jpg","image/jpeg","image/png","image/gif");
 
+if($stmt2 = $conn->prepare("SELECT soort FROM soort WHERE id = ?")) {
+    $stmt2->bind_param("s", $dier);
+    $stmt2->execute();
+    $stmt2->store_result();
 
-
+    if ($stmt2->num_rows > 0) {
+        $stmt2->bind_result($soortnaam);
+        $stmt2->fetch();
+    }
+}
 //function to give a a unique id
 function uuidv4(){
 	$data = openssl_random_pseudo_bytes(16);
@@ -53,7 +61,7 @@ $nugaatnaar = "DierenOpvang";
 $randomid = uuidv4();
 $eigennaarid = uuidv4();
     if ($stmt = $conn->prepare("INSERT INTO `dieren`(`id`, `naam`, `soort`, `leeftijd`, `eigenaar_id`, `geboortedatum`, `naar`, `kenmerken`, `vaccinatie`, `image`) VALUES (?,?,?,?,?,?,?,?,?,?)")) {
-        $stmt->bind_param("ssssssssss", $randomid, $naam, $dier, $leeftijd, $eigennaarid, $datum, $nugaatnaar, $kenmerken, $vacinne, $new_str);
+        $stmt->bind_param("ssssssssss", $randomid, $naam, $soortnaam, $leeftijd, $eigennaarid, $datum, $nugaatnaar, $kenmerken, $vacinne, $new_str);
         $stmt->execute();
         header("Location: ../index.php");
     }
