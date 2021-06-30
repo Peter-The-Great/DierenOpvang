@@ -39,12 +39,12 @@ if($stmt2 = $conn->prepare("SELECT soort FROM soort WHERE id = ?")) {
 }
 //function to give a a unique id
 function uuidv4(){
-    $data = openssl_random_pseudo_bytes(16);
+	$data = openssl_random_pseudo_bytes(16);
 
-    $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
-    $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+	$data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+	$data[8] = chr(ord($data[8]) & 0x3f | 0x80);
 
-    return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+	return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 }
 
 //here we are making sure that the image is moved to its right location.

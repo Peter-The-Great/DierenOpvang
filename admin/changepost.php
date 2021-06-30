@@ -12,23 +12,23 @@ $result = $conn->query($sql);
 $token = bin2hex(openssl_random_pseudo_bytes(32));
 $_SESSION['token'] =  $token;
 
-if($stmt = $conn->prepare("SELECT id, naam, soort, leeftijd, eigenaar_id, geboortedatum, regristratiedatum, naar, kenmerken, vaccinatie, image FROM dieren WHERE id = ?")) {
+if($stmt = $conn->prepare("SELECT naam, soortid, leeftijd, eigenaar_id, geboortedatum, regristratiedatum, naar, kenmerken, vaccinatie, image FROM dieren WHERE id = ?")) {
     $stmt->bind_param("s", $_GET["id"]);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($title, $subtext, $text, $image, $video, $leerlijn);
+        $stmt->bind_result($naam, $dier, $leeftijd, $eigenaar_id, $geboortedatum, $regristratiedatum, $naar, $kenmerken, $vaccinatie, $image);
         $stmt->fetch();
     }
 }
-if($stmt2 = $conn->prepare("SELECT name FROM soort WHERE id = ?")) {
-    $stmt2->bind_param("s", $leerlijn);
+if($stmt2 = $conn->prepare("SELECT soort FROM soort WHERE id = ?")) {
+    $stmt2->bind_param("s", $dier);
     $stmt2->execute();
     $stmt2->store_result();
 
     if ($stmt2->num_rows > 0) {
-        $stmt2->bind_result($leerlijnnaam);
+        $stmt2->bind_result($dierennaam);
         $stmt2->fetch();
     }
 }
@@ -40,23 +40,7 @@ if($stmt2 = $conn->prepare("SELECT name FROM soort WHERE id = ?")) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php require("components/style.php"); ?>
-    <!-- Script Tiny MCE -->
-    <script src="https://cdn.tiny.cloud/1/swq7hpikkqwjjze9ad6mykwgy37w7e1mlvbbslqdqokoedyw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-    	//this is for the tiny mce configuration for both textarea's 
-        tinymce.init({
-            selector: '#subtext',
-            height: '200',
-            plugins: ['wordcount help'],
-            toolbar: 'undo redo | formatselect | ' +
-                'bold italic ' +
-                '| link unlink | bullist numlist outdent indent | ' +
-                'removeformat'  + '| help',
-            content_css: '//www.tiny.cloud/css/codepen.min.css'
-        });
-    </script>
-    
-    <title><?php echo $open; ?> - Verander lesstof</title>
+    <title>DierenOpvang - Verander lesstof</title>
 </head>
 
 <body>
@@ -66,19 +50,31 @@ if($stmt2 = $conn->prepare("SELECT name FROM soort WHERE id = ?")) {
             <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
             <div class="form-group">
                 <label for="titel">Titel</label>
-                <input name="title" id="titel" class="form-control" placeholder="Titel" type="text" value="<?php echo $title;?>" required>
+                <input name="title" id="titel" class="form-control" placeholder="Titel" type="text" value="<?php echo $naam;?>" required>
             </div>
             <div class="form-group">
-                <label for="video">Dier</label>
-                <input name="video" id="video" class="form-control" placeholder="video" type="text" value="https://www.youtube.com/watch?v=<?php echo $video;?>" required>
+                <label for="leeftijd">Leeftijd</label>
+                <input name="leeftijd" id="leeftijd" type="number" class="form-control" placeholder="10" type="text" value="<?php echo $leeftijd;?>" required>
             </div>
             <div class="form-group">
-                <label for="subtext">Sub Tekst</label>
-                <textarea name="subtext" id="subtext"><?php echo $subtext;?></textarea required>
+                <label for="geboortedatum">Geboortedatum</label>
+                <input name="geboortedatum" class="form-control" required type="date" id="geboortedatum" value="<?php echo $geboortedatum;?>">
             </div>
             <div class="form-group">
-                <label for="text">Tekst</label>
-                <textarea name="text" id="text"><?php echo $text;?></textarea required>
+                <label for="registratiedatum">Registratiedatum</label>
+                <input name="regristratiedatum" class="form-control" required type="date" id="regristratiedatum" value="<?php echo $regristratiedatum;?>">
+            </div>
+            <div class="form-group">
+                <label for="naar">Gaat naar</label>
+                <input name="naar" class="form-control" type="text" required id="subtext" value="<?php echo $naar;?>">
+            </div>
+            <div class="form-group">
+                <label for="Kenmerken">Kenmerken</label>
+                <input name="Kenmerken" class="form-control" required type="text" id="Kenmerken" value="<?php echo $kenmerken ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="Vaccinatie">Vaccinatie</label>
+                <input name="Vaccinatie" class="form-control" type="text" id="Vaccinatie" value="<?php echo $vaccinatie;?>" required>
             </div>
             <div class="form-group">
                 <label for="Huidige_Afbeelding">Huidige Achtergrond Foto</label><br>
@@ -86,35 +82,20 @@ if($stmt2 = $conn->prepare("SELECT name FROM soort WHERE id = ?")) {
             </div>
             <div class="form-group">
                 <label for="foto">Achtergrond Foto</label>
-                <input name="image" type="file">
+                <input class="form-control" name="image" type="file">
             </div>
             <div class="form-group">
-                <label for="leerlijn">Leerlijn</label>
-                <select required name="leer">
+                <label for="dier">Soort</label>
+                <select class="form-select" required name="dier">
                 <?php
-                echo "<option selected value'". $leerlijn ."' >". $leerlijnnaam ."</option>";
+                echo "<option selected value='". $dier ."' >". $dierennaam ." (Nu geregistreerd)</option>";
                 //Hier loopen we door alle leerlijnen die dan vervolgens worden laten zien
                 foreach ($result as $item) {
-                    echo "<option value='".$item['id']."'>". $item['name'] ."</option>";
+                    echo "<option value='".$item['id']."'>". $item['soort'] ."</option>";
                 }
                 ?>
                 </select>
             </div>
-            <div class="form-group">
-            <label for="uit">Uitgelicht</label>
-            <div class="form-check">
-                <input class="form-check-input" checked type="radio" value="0" name="uit" id="nee">
-                <label class="form-check-label" for="nee">
-                Nee
-                </label>
-            </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" value="1" name="uit" id="ja">
-            <label class="form-check-label" for="ja">
-            Ja
-            </label>
-            </div>
-        </div>
             <div class="form-group">
                 <input type="submit" name="submit" class="btn btn-dark">
             </div>

@@ -10,7 +10,7 @@ if (!isset($_SESSION["loggedin"])) {
 //basic delete function and deletion of an image with the part itself
 $id = $_GET["id"];
 $unlink = "../";
-$stmt = $conn->prepare("SELECT `image` FROM subject WHERE id = ?");
+$stmt = $conn->prepare("SELECT `image` FROM `dieren` WHERE `id` = ?");
 $stmt->bind_param("s", $id);
 $stmt->execute();
 $stmt->store_result();
@@ -19,10 +19,9 @@ $stmt->fetch();
 unlink($unlink.$Huidig);
 
 if(isset($id)){
-    $stmt = $conn->prepare("DELETE FROM subject WHERE id = ?");
+    $stmt = $conn->prepare("DELETE FROM `dieren` WHERE `id` = ?");
     $stmt->bind_param("s", $id);
     $stmt->execute();
+    header("location: ../admin/dashboard.php");
 }
-
-header("location: ../admin/dashboard.php");
 ?>
