@@ -57,7 +57,7 @@ CREATE TABLE `dieren` (
   `leeftijd` int(3) NOT NULL,
   `eigenaar_id` varchar(64) NOT NULL,
   `geboortedatum` date NOT NULL,
-  `regristratiedatum` date NOT NULL DEFAULT current_timestamp(),
+  `regristratiedatum` datetime NOT NULL DEFAULT current_timestamp(),
   `naar` varchar(64) NOT NULL,
   `kenmerken` text NOT NULL,
   `vaccinatie` text NOT NULL,

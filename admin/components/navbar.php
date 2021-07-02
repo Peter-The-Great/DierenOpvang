@@ -7,13 +7,7 @@
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="nav mx-auto">
 			<li class="nav-item">
-				<a class="nav-link active text-white" href="dashboard.php"></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link text-white" href="info.php">Info over de website</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link text-white" href="profile.php">Profiel Info</a>
+				<a class="nav-link active text-white" href="dashboard.php">Home</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link text-white" href="../php/login/logout.php">Loguit</a>
