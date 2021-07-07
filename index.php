@@ -1,6 +1,9 @@
 <?php
 require("php/database.php");
 session_start();
+
+$sql = "SELECT `id`, `naam`, `soort`, `leeftijd`, `eigenaar_id`, `geboortedatum`, `regristratiedatum`, `naar`, `kenmerken`, `vaccinatie`, `image` FROM `dieren`;";
+$result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +28,19 @@ session_start();
 <?php
 require("components/navbar.php");
 ?>
-
+<div class="center-div">
+		<table class="table table-dark table-hover mx-auto mt-2">
+			<tbody>
+				<?php
+				foreach ($result as $item) {
+					echo "<a href='reservering.php?id=" . $item['id'] . "'><tr><td><img class='img-fluid' src='". $item["image"] ."' width='120' height='100'></td><td>" . $item["naam"] . "</td><td>" .  $item["regristratiedatum"] . "</td>
+					<td>" .  $item["soort"] . "</td><td>" .  $item["leeftijd"] . "</td><td>" .  $item["geboortedatum"] . "</td>
+					<td>" .  $item["kenmerken"] . "</td><td>" .  $item["vaccinatie"] . "</td></tr></a>";
+				}
+				?>
+			</tbody>
+		</table>
+	</div>
 <?php
 require("components/scripts.php");
 require("components/footer.php");

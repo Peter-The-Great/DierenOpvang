@@ -40,7 +40,7 @@ if($stmt2 = $conn->prepare("SELECT soort FROM soort WHERE id = ?")) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php require("components/style.php"); ?>
-    <title>DierenOpvang - Verander lesstof</title>
+    <title>DierenOpvang - Verander Dier</title>
 </head>
 
 <body>
@@ -49,33 +49,37 @@ if($stmt2 = $conn->prepare("SELECT soort FROM soort WHERE id = ?")) {
         <form method="POST" enctype="multipart/form-data" action="../php/changepost.php?id=<?php echo $_GET['id']; ?>">
             <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
             <div class="form-group">
-                <label for="titel">Titel</label>
-                <input name="title" id="titel" class="form-control" placeholder="Titel" type="text" value="<?php echo $naam;?>" required>
+                <label for="naam">Naam</label>
+                <input name="naam" id="naam" class="form-control" placeholder="Naam" type="text" value="<?php echo $naam;?>" required>
             </div>
             <div class="form-group">
                 <label for="leeftijd">Leeftijd</label>
                 <input name="leeftijd" id="leeftijd" type="number" class="form-control" placeholder="10" type="text" value="<?php echo $leeftijd;?>" required>
             </div>
             <div class="form-group">
-                <label for="geboortedatum">Geboortedatum</label>
-                <input name="geboortedatum" class="form-control" required type="date" id="geboortedatum" value="<?php echo $geboortedatum;?>">
-            </div>
-            <div class="form-group">
-                <label for="registratiedatum">Registratiedatum</label>
-                <input name="regristratiedatum" class="form-control" required type="date" id="regristratiedatum" value="<?php echo $regristratiedatum;?>">
+                <label for="jaar">Geboortedatum</label>
+                <input name="jaar" class="form-control" required type="date" id="jaar" value="<?php echo $geboortedatum;?>">
             </div>
             <div class="form-group">
                 <label for="naar">Gaat naar</label>
-                <input name="naar" class="form-control" type="text" required id="subtext" value="<?php echo $naar;?>">
+                <input name="naar" class="form-control" type="text" required id="naar" value="<?php echo $naar;?>">
             </div>
             <div class="form-group">
-                <label for="Kenmerken">Kenmerken</label>
-                <input name="Kenmerken" class="form-control" required type="text" id="Kenmerken" value="<?php echo $kenmerken ?>" required>
+                <label for="kenmerken">Kenmerken</label>
+                <input name="kenmerken" class="form-control" required type="text" id="kenmerken" value="<?php echo $kenmerken ?>" required>
             </div>
             <div class="form-group">
-                <label for="Vaccinatie">Vaccinatie</label>
-                <input name="Vaccinatie" class="form-control" type="text" id="Vaccinatie" value="<?php echo $vaccinatie;?>" required>
+                <label for="vaccinatie">Vaccinatie</label>
+                <input name="vaccinatie" class="form-control" type="text" id="vaccinatie" value="<?php echo $vaccinatie;?>" required>
             </div>
+            <!--<div class="form-group">
+                <label for="eigenaar">Eigenaar</label>
+                <textarea class="form-control" name="eigenaar" id="subtext"></textarea required>
+            </div>
+            <div class="form-group">
+                <label for="email">Eigenaar-email</label>
+                <input class="form-control" type="email" name="email" id="email"></input required>
+            </div>-->
             <div class="form-group">
                 <label for="Huidige_Afbeelding">Huidige Achtergrond Foto</label><br>
                 <input hidden="1" readonly="1" name="Huidige_Afbeelding" value="<?php echo $image;?>"><img src="../<?php echo "" . $image . "";?>" width="120" height="110">

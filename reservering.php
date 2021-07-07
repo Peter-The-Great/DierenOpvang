@@ -1,6 +1,30 @@
 <?php
 require("php/database.php");
 session_start();
+if (!isset($_GET['id'])) {
+	header("Location: ../index.php");
+	return false;
+}
+if($stmt = $conn->prepare("SELECT naam, soortid, leeftijd, eigenaar_id, geboortedatum, regristratiedatum, naar, kenmerken, vaccinatie, image FROM dieren WHERE id = ?")) {
+    $stmt->bind_param("s", $_GET["id"]);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($naam, $dier, $leeftijd, $eigenaar_id, $geboortedatum, $regristratiedatum, $naar, $kenmerken, $vaccinatie, $image);
+        $stmt->fetch();
+    }
+}
+if($stmt2 = $conn->prepare("SELECT soort FROM soort WHERE id = ?")) {
+    $stmt2->bind_param("s", $dier);
+    $stmt2->execute();
+    $stmt2->store_result();
+
+    if ($stmt2->num_rows > 0) {
+        $stmt2->bind_result($dierennaam);
+        $stmt2->fetch();
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +39,7 @@ session_start();
     <title>Dieren Opvang Reservering</title>
 </head>
 <body>
-<header>
+<header style="background-image: url(<?php echo $image ?>) !important;" >
 	<div class="container">
     <img class="img-fluid" width="120" src="uploads/simg/logo.png">
 	    <h1 style="margin-top: -4rem;" class="text-center ms-4">Dierenopvang</h1>
@@ -25,7 +49,11 @@ session_start();
 <?php
     require("components/navbar.php");
 ?>
-
+<section class="mt-3 mb-5 container" id="article">
+		<div class="row">
+			<p class="maxw"><?php echo $naam; ?></p>
+		</div>
+	</section>
 <?php
 require("components/scripts.php");
 require("components/footer.php");

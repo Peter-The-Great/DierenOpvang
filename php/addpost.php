@@ -61,7 +61,7 @@ $nugaatnaar = "DierenOpvang";
 $randomid = uuidv4();
 $eigennaarid = uuidv4();
     if ($stmt = $conn->prepare("INSERT INTO `dieren`(`id`, `naam`, `soort`, `soortid`, `leeftijd`, `eigenaar_id`, `geboortedatum`, `naar`, `kenmerken`, `vaccinatie`, `image`) VALUES (?,?,?,?,?,?,?,?,?,?,?)")) {
-        $stmt->bind_param("ssssssssss", $randomid, $naam, $soortnaam, $dier, $leeftijd, $eigennaarid, $datum, $nugaatnaar, $kenmerken, $vacinne, $new_str);
+        $stmt->bind_param("sssssssssss", $randomid, $naam, $soortnaam, $dier, $leeftijd, $eigennaarid, $datum, $nugaatnaar, $kenmerken, $vacinne, $new_str);
         $stmt->execute();
         header("Location: ../admin/dashboard.php");
     }

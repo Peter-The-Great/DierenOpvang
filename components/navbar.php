@@ -8,9 +8,6 @@
 					<a class="nav-link text-secondary" href="registratie.php">Registratie</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link text-secondary" href="reservering.php">Reservering</a>
-				</li>
-				<li class="nav-item">
 					<a class="nav-link text-secondary" href="contact.php">Contact</a>
 				</li>
 			</ul>
