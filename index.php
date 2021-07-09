@@ -33,9 +33,9 @@ require("components/navbar.php");
 			<tbody>
 				<?php
 				foreach ($result as $item) {
-					echo "<a href='reservering.php?id=" . $item['id'] . "'><tr><td><img class='img-fluid' src='". $item["image"] ."' width='120' height='100'></td><td>" . $item["naam"] . "</td><td>" .  $item["regristratiedatum"] . "</td>
+					echo "<tr class='clickable-row' style='cursor: pointer;' data-href='reservering.php?id=". $item['id'] ."'><td><img class='img-fluid' src='". $item["image"] ."' width='120' height='100'></td><td>" . $item["naam"] . "</td><td>" .  $item["regristratiedatum"] . "</td>
 					<td>" .  $item["soort"] . "</td><td>" .  $item["leeftijd"] . "</td><td>" .  $item["geboortedatum"] . "</td>
-					<td>" .  $item["kenmerken"] . "</td><td>" .  $item["vaccinatie"] . "</td></tr></a>";
+					<td>" .  $item["kenmerken"] . "</td><td>" .  $item["vaccinatie"] . "</td></tr>";
 				}
 				?>
 			</tbody>
@@ -45,5 +45,12 @@ require("components/navbar.php");
 require("components/scripts.php");
 require("components/footer.php");
 ?>
+<script>
+	$(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>
 </body>
 </html>

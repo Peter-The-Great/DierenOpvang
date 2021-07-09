@@ -52,6 +52,7 @@ if($stmt2 = $conn->prepare("SELECT soort FROM soort WHERE id = ?")) {
 <section class="mt-3 mb-5 container" id="article">
 		<div class="row">
 			<p class="maxw"><?php echo $naam; ?></p>
+            <img class='img-fluid' src='<?php echo $image ?>' width='120px'>
 		</div>
 	</section>
 <?php
