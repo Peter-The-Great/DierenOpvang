@@ -6,8 +6,6 @@ if (!isset($_SESSION["loggedin"])) {
 	header("Location: ../index.php");
 	exit();
 }
-//include autoloader
-require_once 'dompdf/autoload.inc.php';
 //instantiate and use the class
 use Dompdf\Dompdf;
 if(isset($_GET['id'])){
